@@ -1,0 +1,17 @@
+{
+  "name": "drafftink-app",
+  "type": "module",
+  "description": "DrafftInk application shell for native and WASM",
+  "version": "0.1.0",
+  "license": "AGPL-3.0",
+  "files": [
+    "drafftink_app_bg.wasm",
+    "drafftink_app.js",
+    "drafftink_app.d.ts"
+  ],
+  "main": "drafftink_app.js",
+  "types": "drafftink_app.d.ts",
+  "sideEffects": [
+    "./snippets/*"
+  ]
+}

@@ -1,0 +1,81 @@
+/* tslint:disable */
+/* eslint-disable */
+
+/**
+ * Initialize and run the WASM application.
+ */
+export function run_wasm(): Promise<void>;
+
+export type InitInput = RequestInfo | URL | Response | BufferSource | WebAssembly.Module;
+
+export interface InitOutput {
+  readonly memory: WebAssembly.Memory;
+  readonly run_wasm: () => void;
+  readonly wasm_bindgen__convert__closures_____invoke__h1fad2bb8049b3dfb: (a: number, b: number, c: any) => void;
+  readonly wasm_bindgen__closure__destroy__h4739c7a4cb3950fe: (a: number, b: number) => void;
+  readonly wasm_bindgen__convert__closures_____invoke__h3028d1872021b3de: (a: number, b: number) => void;
+  readonly wasm_bindgen__closure__destroy__h1bd398825b3fad04: (a: number, b: number) => void;
+  readonly wasm_bindgen__convert__closures_____invoke__h846d7959e8a0ea22: (a: number, b: number, c: any) => void;
+  readonly wasm_bindgen__closure__destroy__h0917741aa666e40e: (a: number, b: number) => void;
+  readonly wasm_bindgen__convert__closures_____invoke__hb0bcf7905c57961a: (a: number, b: number, c: any) => void;
+  readonly wasm_bindgen__closure__destroy__haa7a4facbfb728ed: (a: number, b: number) => void;
+  readonly wasm_bindgen__convert__closures_____invoke__h8c1f3dc2e5647bf9: (a: number, b: number, c: any) => void;
+  readonly wasm_bindgen__closure__destroy__h7b09bbc1ca00f421: (a: number, b: number) => void;
+  readonly wasm_bindgen__convert__closures_____invoke__hf51cf9813f6828e5: (a: number, b: number, c: any) => void;
+  readonly wasm_bindgen__closure__destroy__hb2a9726b72e8c97f: (a: number, b: number) => void;
+  readonly wasm_bindgen__convert__closures_____invoke__h09f9d949e4c769fc: (a: number, b: number, c: any) => void;
+  readonly wasm_bindgen__closure__destroy__haa54c6a1037949eb: (a: number, b: number) => void;
+  readonly wasm_bindgen__convert__closures_____invoke__h77258b6f32ee0bae: (a: number, b: number) => void;
+  readonly wasm_bindgen__closure__destroy__he841cb6f0afd09a2: (a: number, b: number) => void;
+  readonly wasm_bindgen__convert__closures_____invoke__h3aae99ec5eb18a24: (a: number, b: number, c: any) => void;
+  readonly wasm_bindgen__closure__destroy__h130f4277f1c86507: (a: number, b: number) => void;
+  readonly wasm_bindgen__convert__closures_____invoke__h3763018b02d83f91: (a: number, b: number, c: any) => void;
+  readonly wasm_bindgen__closure__destroy__h2dfece6784878996: (a: number, b: number) => void;
+  readonly wasm_bindgen__convert__closures_____invoke__hcf6bce2f6e549b22: (a: number, b: number, c: any) => void;
+  readonly wasm_bindgen__closure__destroy__h16e752e2fe725f77: (a: number, b: number) => void;
+  readonly wasm_bindgen__convert__closures_____invoke__h352c19e1baedbbbc: (a: number, b: number, c: any) => void;
+  readonly wasm_bindgen__closure__destroy__h30d81d949f38c9be: (a: number, b: number) => void;
+  readonly wasm_bindgen__convert__closures_____invoke__h34a4b1541872671c: (a: number, b: number, c: any) => void;
+  readonly wasm_bindgen__closure__destroy__h218a350e2e0f1bfb: (a: number, b: number) => void;
+  readonly wasm_bindgen__convert__closures_____invoke__h439623a0bdc72480: (a: number, b: number, c: any) => void;
+  readonly wasm_bindgen__closure__destroy__hf600d87aeb7e1d79: (a: number, b: number) => void;
+  readonly wasm_bindgen__convert__closures_____invoke__h03c263542c1d11eb: (a: number, b: number, c: any, d: any) => void;
+  readonly wasm_bindgen__closure__destroy__hb37561616ad88c04: (a: number, b: number) => void;
+  readonly wasm_bindgen__convert__closures_____invoke__h47ece9d906cf41a7: (a: number, b: number, c: any) => void;
+  readonly wasm_bindgen__closure__destroy__hbad2e99878c157f0: (a: number, b: number) => void;
+  readonly wasm_bindgen__convert__closures_____invoke__hf08a447ec785395c: (a: number, b: number, c: any) => void;
+  readonly wasm_bindgen__closure__destroy__h5c7f592750abcb65: (a: number, b: number) => void;
+  readonly wasm_bindgen__convert__closures_____invoke__h392e37486cabaa23: (a: number, b: number, c: any) => void;
+  readonly wasm_bindgen__closure__destroy__h3e6b6e0e40806bee: (a: number, b: number) => void;
+  readonly wasm_bindgen__convert__closures_____invoke__ha87da6173727fe8b: (a: number, b: number) => number;
+  readonly wasm_bindgen__convert__closures_____invoke__h00fab9553f9747a5: (a: number, b: number, c: any, d: any) => void;
+  readonly __wbindgen_malloc: (a: number, b: number) => number;
+  readonly __wbindgen_realloc: (a: number, b: number, c: number, d: number) => number;
+  readonly __externref_table_alloc: () => number;
+  readonly __wbindgen_externrefs: WebAssembly.Table;
+  readonly __wbindgen_exn_store: (a: number) => void;
+  readonly __wbindgen_free: (a: number, b: number, c: number) => void;
+  readonly __wbindgen_start: () => void;
+}
+
+export type SyncInitInput = BufferSource | WebAssembly.Module;
+
+/**
+* Instantiates the given `module`, which can either be bytes or
+* a precompiled `WebAssembly.Module`.
+*
+* @param {{ module: SyncInitInput }} module - Passing `SyncInitInput` directly is deprecated.
+*
+* @returns {InitOutput}
+*/
+export function initSync(module: { module: SyncInitInput } | SyncInitInput): InitOutput;
+
+/**
+* If `module_or_path` is {RequestInfo} or {URL}, makes a request and
+* for everything else, calls `WebAssembly.instantiate` directly.
+*
+* @param {{ module_or_path: InitInput | Promise<InitInput> }} module_or_path - Passing `InitInput` directly is deprecated.
+*
+* @returns {Promise<InitOutput>}
+*/
+export default function __wbg_init (module_or_path?: { module_or_path: InitInput | Promise<InitInput> } | InitInput | Promise<InitInput>): Promise<InitOutput>;
