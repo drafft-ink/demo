@@ -65,6 +65,18 @@
         </div>
     </div>
     
+    <script>
+        // Prevent browser from intercepting keyboard shortcuts we need
+        document.addEventListener('keydown', function(e) {
+            if ((e.ctrlKey || e.metaKey) && (
+                e.key === 'e' || e.key === 'E' ||
+                e.key === 's' || e.key === 'S' ||
+                e.key === 'g' || e.key === 'G'
+            )) {
+                e.preventDefault();
+            }
+        });
+    </script>
     <script type="module">
         import init from './pkg/drafftink_app.js';
         
