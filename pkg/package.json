@@ -2,7 +2,7 @@
   "name": "drafftink-app",
   "type": "module",
   "description": "DrafftInk application shell for native and WASM",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "license": "AGPL-3.0",
   "files": [
     "drafftink_app_bg.wasm",
