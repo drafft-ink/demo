@@ -3,16 +3,28 @@
 <head>
 <meta charset="utf-8">
 <title>Drafft.ink</title>
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, viewport-fit=cover, user-scalable=no">
 <meta name="description" content="An infinite canvas whiteboard. Draw first, sign up never.">
 <meta name="theme-color" content="#ffffff">
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <link rel="apple-touch-icon" href="icon-192.png">
 <link rel="manifest" href="manifest.webmanifest">
-<link rel="preload" as="fetch" crossorigin href="fonts/Ubuntu-Light.80307b8da7.ttf"><link rel="preload" as="fetch" crossorigin href="fonts/STIXTwoMath-Regular.b6cf92dc8c.otf"><link rel="preload" as="fetch" crossorigin href="schemas/commands.836023dda8.json">
+<link rel="preload" as="fetch" crossorigin href="fonts/Ubuntu-Light.80307b8da7.ttf"><link rel="preload" as="fetch" crossorigin href="fonts/STIXTwoMath-Regular.b6cf92dc8c.otf"><link rel="preload" as="fetch" crossorigin href="schemas/commands.23fd387331.json">
 <style>
-  html, body { margin: 0; height: 100%; overflow: hidden; background: #f6f6f8; overscroll-behavior: none; }
-  canvas { display: block; width: 100vw; height: 100vh; outline: none; touch-action: none; }
+  /* The page never scrolls. `100vh` is the height of the largest viewport on iOS and iPadOS Safari: with the toolbar
+     showing, the lower part of a `100vh` canvas lies below the visible page, and the bottom bar with it. The canvas is
+     pinned to the visible viewport instead (`position: fixed`), inside the safe-area insets (home indicator, notch,
+     rounded corners; `viewport-fit=cover` in the meta tag makes the insets non-zero). */
+  html, body { margin: 0; width: 100%; height: 100%; overflow: hidden; background: #f6f6f8; overscroll-behavior: none;
+               -webkit-text-size-adjust: 100%; }
+  body { position: fixed; inset: 0; }
+  canvas { display: block; position: fixed; box-sizing: border-box; outline: none; touch-action: none; user-select: none;
+           -webkit-user-select: none; -webkit-touch-callout: none; -webkit-tap-highlight-color: transparent;
+           top: env(safe-area-inset-top, 0px);
+           left: env(safe-area-inset-left, 0px);
+           /* A canvas is a replaced element: opposite insets do not stretch it, so its size is stated. */
+           width: calc(100% - env(safe-area-inset-left, 0px) - env(safe-area-inset-right, 0px));
+           height: calc(100% - env(safe-area-inset-top, 0px) - env(safe-area-inset-bottom, 0px)); }
   #loading { position: fixed; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center;
              gap: 14px; font: 16px/1.4 system-ui, sans-serif; color: #444; pointer-events: none; }
   #loading-progress { min-height: 1.4em; font-size: 13px; color: #777; font-variant-numeric: tabular-nums; }
@@ -22,7 +34,7 @@
   #failure { position: fixed; inset: 0; display: none; align-items: center; justify-content: center; padding: 24px;
              font: 16px/1.5 system-ui, sans-serif; color: #222; background: #f6f6f8; text-align: center; }
   #failure pre { white-space: pre-wrap; color: #777; font-size: 13px; }
-  #compat { position: fixed; left: 50%; bottom: 12px; transform: translateX(-50%); z-index: 5; max-width: min(36rem, calc(100vw - 24px));
+  #compat { position: fixed; left: 50%; bottom: calc(12px + env(safe-area-inset-bottom, 0px)); transform: translateX(-50%); z-index: 5; max-width: min(36rem, calc(100vw - 24px));
             display: flex; gap: 10px; align-items: center; padding: 6px 8px 6px 12px; border-radius: 6px;
             font: 13px/1.35 system-ui, sans-serif; color: #5a3b00; background: #fff4d6; border: 1px solid #e8c874; }
   #compat button { all: unset; cursor: pointer; padding: 0 6px; font-size: 18px; line-height: 1; color: #5a3b00; }
@@ -33,7 +45,7 @@
 <div id="loading" role="status"><div>Loading Drafft.ink</div><div id="loading-progress" aria-live="off"></div><div class="bar"></div></div>
 <div id="failure" role="alert"><div><h1>Drafft.ink could not start</h1>
   <p>Drafft.ink draws with WebGPU, or with WebGL2 when WebGPU is missing. Use a current Chrome, Edge, Firefox or Safari.</p><pre id="failure-detail"></pre></div></div>
-<script>window.__assets = {"NotoSans-Regular.ttf":"fonts/NotoSans-Regular.fe8c022f48.ttf","NotoSans-Bold.ttf":"fonts/NotoSans-Bold.13a813c496.ttf","NotoSans-Italic.ttf":"fonts/NotoSans-Italic.feb3e57888.ttf","IBMPlexSans-Variable.ttf":"fonts/IBMPlexSans-Variable.3b031aa421.ttf","STIXTwoMath-Regular.otf":"fonts/STIXTwoMath-Regular.b6cf92dc8c.otf","Ubuntu-Light.ttf":"fonts/Ubuntu-Light.80307b8da7.ttf","Hack-Regular.ttf":"fonts/Hack-Regular.15f55cc0c8.ttf","emoji-icon-font.ttf":"fonts/emoji-icon-font.f426bec371.ttf","commands.schema.json":"schemas/commands.836023dda8.json"};</script>
+<script>window.__assets = {"NotoSans-Regular.ttf":"fonts/NotoSans-Regular.fe8c022f48.ttf","NotoSans-Bold.ttf":"fonts/NotoSans-Bold.13a813c496.ttf","NotoSans-Italic.ttf":"fonts/NotoSans-Italic.feb3e57888.ttf","IBMPlexSans-Variable.ttf":"fonts/IBMPlexSans-Variable.3b031aa421.ttf","STIXTwoMath-Regular.otf":"fonts/STIXTwoMath-Regular.b6cf92dc8c.otf","NotoSansSymbols2-Fallback.ttf":"fonts/NotoSansSymbols2-Fallback.dd79417fc3.ttf","NotoSansMath-Fallback.ttf":"fonts/NotoSansMath-Fallback.d728bee895.ttf","NotoSansKannada-Fallback.ttf":"fonts/NotoSansKannada-Fallback.5ab022b0f1.ttf","NotoSansArabic-Fallback.ttf":"fonts/NotoSansArabic-Fallback.cbc4fef81a.ttf","NotoSansCJK-Fallback.otf":"fonts/NotoSansCJK-Fallback.a1a2e52a80.otf","Ubuntu-Light.ttf":"fonts/Ubuntu-Light.80307b8da7.ttf","Hack-Regular.ttf":"fonts/Hack-Regular.15f55cc0c8.ttf","emoji-icon-font.ttf":"fonts/emoji-icon-font.f426bec371.ttf","commands.schema.json":"schemas/commands.23fd387331.json"};</script>
 <script>
   // AGPL-3.0 section 13: the server that delivered this page says where its source code is. The About dialog reads
   // window.__source when it opens. Hosted without drafftink-server, there is no such file and the dialog shows the
@@ -44,8 +56,8 @@
     .catch(() => {});
 </script>
 <script type="module">
-  // The build script puts a hash in place of 111cde8697b4, so a new build never mixes with a cached old one.
-  const BUILD = "111cde8697b4";
+  // The build script puts a hash in place of db90d9741bdd, so a new build never mixes with a cached old one.
+  const BUILD = "db90d9741bdd";
   const fail = (e) => {
     console.error(e);
     window.__error = String(e);
@@ -81,7 +93,7 @@
   const mark = (name) => { (window.__marks ||= {})[name] = Math.round(performance.now()); };
   // Two builds of the app. `pkg` draws with WebGPU. `pkg-gl` draws with WebGL2 and is fetched only when the browser has
   // no WebGPU adapter (`?renderer=gl` forces it, `?renderer=gpu` forbids it), so the normal build is never slowed or grown by it.
-  const BUILD_GL = "a91b8a11b289";
+  const BUILD_GL = "dee369445520";
   const adapterOk = async () => {
     try { return Boolean(navigator.gpu && await navigator.gpu.requestAdapter()); } catch (_) { return false; }
   };
