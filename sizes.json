@@ -1,1 +1,1 @@
-{"raw": 25730835, "opt": 25730835, "gzip":  5868800, "brotli":  3612856, "fonts_brotli": 1968940, "schemas_brotli":    35481, "fallback_raw": 25237844, "fallback_opt": 25237844, "fallback_gzip":  5801408, "fallback_brotli":  3583960}
+{"raw": 25707049, "opt": 12155695, "gzip": 4638947, "brotli": 3265080, "fonts_brotli": 1968940, "schemas_brotli": 35481, "fallback_raw": 25186016, "fallback_opt": 11793293, "fallback_gzip": 4585207, "fallback_brotli": 3241979}

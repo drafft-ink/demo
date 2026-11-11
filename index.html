@@ -56,8 +56,8 @@
     .catch(() => {});
 </script>
 <script type="module">
-  // The build script puts a hash in place of c6f6e772ddc8, so a new build never mixes with a cached old one.
-  const BUILD = "c6f6e772ddc8";
+  // The build script puts a hash in place of 2bf6da6148c3, so a new build never mixes with a cached old one.
+  const BUILD = "2bf6da6148c3";
   const fail = (e) => {
     console.error(e);
     window.__error = String(e);
@@ -93,7 +93,7 @@
   const mark = (name) => { (window.__marks ||= {})[name] = Math.round(performance.now()); };
   // Two builds of the app. `pkg` draws with WebGPU. `pkg-gl` draws with WebGL2 and is fetched only when the browser has
   // no WebGPU adapter (`?renderer=gl` forces it, `?renderer=gpu` forbids it), so the normal build is never slowed or grown by it.
-  const BUILD_GL = "51024d67cec0";
+  const BUILD_GL = "e9fa971a6696";
   const adapterOk = async () => {
     try { return Boolean(navigator.gpu && await navigator.gpu.requestAdapter()); } catch (_) { return false; }
   };
