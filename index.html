@@ -48,7 +48,7 @@
 <script>window.__assets = {"NotoSans-Regular.ttf":"fonts/NotoSans-Regular.fe8c022f48.ttf","NotoSans-Bold.ttf":"fonts/NotoSans-Bold.13a813c496.ttf","NotoSans-Italic.ttf":"fonts/NotoSans-Italic.feb3e57888.ttf","IBMPlexSans-Variable.ttf":"fonts/IBMPlexSans-Variable.3b031aa421.ttf","STIXTwoMath-Regular.otf":"fonts/STIXTwoMath-Regular.b6cf92dc8c.otf","NotoSansSymbols2-Fallback.ttf":"fonts/NotoSansSymbols2-Fallback.dd79417fc3.ttf","NotoSansMath-Fallback.ttf":"fonts/NotoSansMath-Fallback.d728bee895.ttf","NotoSansKannada-Fallback.ttf":"fonts/NotoSansKannada-Fallback.5ab022b0f1.ttf","NotoSansArabic-Fallback.ttf":"fonts/NotoSansArabic-Fallback.cbc4fef81a.ttf","NotoSansCJK-Fallback.otf":"fonts/NotoSansCJK-Fallback.a1a2e52a80.otf","Ubuntu-Light.ttf":"fonts/Ubuntu-Light.80307b8da7.ttf","Hack-Regular.ttf":"fonts/Hack-Regular.15f55cc0c8.ttf","emoji-icon-font.ttf":"fonts/emoji-icon-font.f426bec371.ttf","commands.schema.json":"schemas/commands.2535e2cc8c.json"};</script>
 <script>
   // AGPL-3.0 section 13: the server that delivered this page says where its source code is. The About dialog reads
-  // window.__source when it opens. Hosted without drafftink-server, there is no such file and the dialog shows the
+  // window.__source when it opens. Hosted without `drafftink-headless serve`, there is no such file and the dialog shows the
   // project repository.
   fetch("/source.json", { cache: "no-cache" })
     .then((r) => (r.ok ? r.json() : null))
@@ -56,8 +56,8 @@
     .catch(() => {});
 </script>
 <script type="module">
-  // The build script puts a hash in place of f1c7f6dfd101, so a new build never mixes with a cached old one.
-  const BUILD = "f1c7f6dfd101";
+  // The build script puts a hash in place of 44ec78b15762, so a new build never mixes with a cached old one.
+  const BUILD = "44ec78b15762";
   const fail = (e) => {
     console.error(e);
     window.__error = String(e);
@@ -93,7 +93,7 @@
   const mark = (name) => { (window.__marks ||= {})[name] = Math.round(performance.now()); };
   // Two builds of the app. `pkg` draws with WebGPU. `pkg-gl` draws with WebGL2 and is fetched only when the browser has
   // no WebGPU adapter (`?renderer=gl` forces it, `?renderer=gpu` forbids it), so the normal build is never slowed or grown by it.
-  const BUILD_GL = "a960b90bdc44";
+  const BUILD_GL = "ff491323681a";
   const adapterOk = async () => {
     try { return Boolean(navigator.gpu && await navigator.gpu.requestAdapter()); } catch (_) { return false; }
   };
