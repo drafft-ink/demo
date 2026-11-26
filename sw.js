@@ -8,8 +8,8 @@
 //  * Everything else of ours is cache first. The script and the wasm carry ?v=<build> in their address, so a
 //    cached file always belongs to the build that asked for it.
 //  * /ws, /health, /source and /source.json (the operator can change them), other origins and non-GET requests are never touched.
-const BUILD = "a16d61c67d13";
-const BUILD_GL = "c8e190b3312a";
+const BUILD = "3dc1ae41798a";
+const BUILD_GL = "b9237e6bfcee";
 // The page registers `sw.js?r=webgl` when it runs the WebGL2 module (a browser without WebGPU). That worker stores the
 // WebGL2 module and never fetches the 12 MB WebGPU one; any other worker does the opposite.
 const GL = new URL(self.location.href).searchParams.get("r") === "webgl";
